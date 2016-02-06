@@ -25,7 +25,8 @@
     "dagon": "git://github.com/reharik/dagon.git",
     "extend": "^3.0.0",
     "ramda": "^0.18.0",
-    "ramda-fantasy": "^0.4.1"
+    "ramda-fantasy": "^0.4.1",
+    "uuid": "^2.0.1"
   },
   "devDependencies": {
     "mocha": "^2.2.5",
