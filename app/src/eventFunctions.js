@@ -1,8 +1,8 @@
 
 module.exports = function(R, uuid, functionalHelpers){
     var fh = functionalHelpers;
-    var parseMetadata = R.compose(R.chain(fh.safeParseBuffer), R.chain(fh.safeProp('Metadata')), fh.safeProp('OriginalEvent'));
-    var parseData = R.compose(R.chain(fh.safeParseBuffer), R.chain(fh.safeProp('Data')), fh.safeProp('OriginalEvent'));
+    var parseMetadata = R.compose(R.chain(fh.safeParseBuffer), fh.safeProp('Metadata'));
+    var parseData = R.compose(R.chain(fh.safeParseBuffer), fh.safeProp('Data'));
     var outGoingEvent = event => {
         return {
             EventId : uuid.v4(),
@@ -15,7 +15,7 @@ module.exports = function(R, uuid, functionalHelpers){
 
     var incomingEvent = event => {
         return {
-            eventName : (R.compose(R.chain(fh.safeProp('eventName')),parseMetadata)(event)).getOrElse(''),
+            eventName : fh.safeProp('eventName',event).getOrElse(''),
             metadata: parseMetadata(event).getOrElse({}),
             data: parseData(event).getOrElse({}),
             originalPosition: fh.safeProp('OriginalPosition', event).getOrElse({})
