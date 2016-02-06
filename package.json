@@ -1,19 +1,19 @@
 {
-  "name": "eventmodels",
+  "name": "applicationfunctions",
   "version": "0.1.0",
   "private": false,
   "description": "core_eventModels",
-  "homepage": "https://github.com/reharik/core_eventModels#readme",
+  "homepage": "https://github.com/reharik/core_applicationFunctions#readme",
   "main": "app/index.js",
   "scripts": {
     "test": "mocha --require ./app/tests/babelhook --opts ./app/tests/mocha.opts ./app/tests/unitTests/*.js"
   },
   "bugs": {
-    "url": "https://github.com/reharik/core_eventModels/issues"
+    "url": "https://github.com/reharik/core_applicationFunctions/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/reharik/core_eventModels.git"
+    "url": "git+https://github.com/reharik/core_applicationFunctions.git"
   },
   "keywords": [],
   "author": "Raif Harik",
@@ -21,19 +21,14 @@
   "dependencies": {
     "JSON": "^1.0.0",
     "buffer": "^3.4.2",
-    "corelogger": "git://github.com/reharik/core_logger.git#master",
+    "corelogger": "git://github.com/reharik/core_logger.git",
     "dagon": "git://github.com/reharik/dagon.git",
     "extend": "^3.0.0",
     "ramda": "^0.18.0",
     "ramda-fantasy": "^0.4.1"
   },
   "devDependencies": {
-    "babel": "^5.8.23",
-    "del": "^1.2.0",
-    "gulp": "^3.9.0",
-    "gulp-babel": "^5.2.1",
     "mocha": "^2.2.5",
-    "mochawait": "^2.0.1",
     "must": "^0.12.0"
   }
 }
