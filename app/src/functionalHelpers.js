@@ -5,6 +5,8 @@
 module.exports = function(R, _fantasy, buffer) {
     var Maybe           = _fantasy.Maybe;
 
+    var Future          = _fantasy.Future;
+
     var safeProp        = R.curry((x, o) => o ? Maybe(o[x]) : Maybe.Nothing());
 
     var startsWith      = R.curry((x, s) => s.startsWith(x));
