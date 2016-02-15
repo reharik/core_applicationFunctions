@@ -38,7 +38,7 @@ module.exports = function(R, _fantasy, buffer) {
     };
     var tryStringify = x => {
         try {
-            reurn Maybe.of(JSON.stringify(x));
+            return Maybe.of(JSON.stringify(x));
         }
         catch (e) {
             return Maybe.Nothing();
