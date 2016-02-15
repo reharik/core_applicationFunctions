@@ -11,11 +11,13 @@ module.exports = function(R, _fantasy, buffer) {
 
     var startsWith      = R.curry((x, s) => s.startsWith(x));
 
-    var getSafeValue = (src, prop, _default) => {
+    var boolToMaybe     = x => x ? Maybe(x) : Maybe.Nothing();
+
+    var getSafeValue = (prop, src, _default) => {
         if(_default) {
-            return safeProp(src, prop).getOrElse(_default);
+            return safeProp(prop,src).getOrElse(_default);
         }
-        return safeProp(src, prop).getOrElse();
+        return safeProp(prop, src).getOrElse();
     };
 
     var safeParseBuffer = x => buffer.Buffer.isBuffer(x) ? tryParseJSON(x.toString('utf8')) : Maybe.Nothing();
@@ -36,12 +38,15 @@ module.exports = function(R, _fantasy, buffer) {
     };
     var tryStringify = x => {
         try {
-            return Maybe.of(JSON.stringify(x));
+            reurn Maybe.of(JSON.stringify(x));
         }
         catch (e) {
             return Maybe.Nothing();
         }
     };
+
+
+    var isTrue = R.compose(R.map(R.lift(R.equals(true))));
 
     var log         = (x) => {
         console.log('==========log=========');
@@ -91,6 +96,7 @@ module.exports = function(R, _fantasy, buffer) {
     };
 
     return {
+        Maybe,
         safeProp,
         startsWith,
         getSafeValue,
@@ -98,6 +104,8 @@ module.exports = function(R, _fantasy, buffer) {
         safeCreateBuffer,
         tryParseJSON,
         tryStringify,
+        isTrue,
+        boolToMaybe,
         log,
         logPlus,
         logFork,
