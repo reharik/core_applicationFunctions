@@ -96,7 +96,7 @@ module.exports = function(R, _fantasy, buffer, logger) {
     };
 
     var loggerTap = (payload,msg,level) => {
-        logger[level || 'trace'](msg);
+        logger[level || 'trace'](msg || payload);
         return payload;
     };
 
