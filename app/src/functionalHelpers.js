@@ -2,7 +2,7 @@
  * Created by rharik on 11/1/15.
  */
 
-module.exports = function(R, _fantasy, buffer) {
+module.exports = function(R, _fantasy, buffer, logger) {
     var Maybe           = _fantasy.Maybe;
 
     var Future          = _fantasy.Future;
@@ -95,6 +95,11 @@ module.exports = function(R, _fantasy, buffer) {
         return sr ? Future((rej, res)=> res(sr)) : Future((rej, res)=> rej(fr));
     };
 
+    var loggerTap = (payload,msg,level) => {
+        logger[level || 'trace'](msg);
+        return payload;
+    };
+
     return {
         Maybe,
         safeProp,
@@ -109,6 +114,7 @@ module.exports = function(R, _fantasy, buffer) {
         log,
         logPlus,
         logFork,
-        logForkPlus
+        logForkPlus,
+        loggerTap
     }
 };
