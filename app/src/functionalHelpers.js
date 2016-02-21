@@ -95,7 +95,7 @@ module.exports = function(R, _fantasy, buffer, logger) {
         return sr ? Future((rej, res)=> res(sr)) : Future((rej, res)=> rej(fr));
     };
 
-    var loggerTap = (payload,msg,level) => {
+    var loggerTap = (payload, level, msg) => {
         logger[level || 'trace'](msg || payload);
         return payload;
     };
