@@ -4,12 +4,14 @@ module.exports = function(R, uuid, functionalHelpers){
     var parseMetadata = R.compose(R.chain(fh.safeParseBuffer), R.chain(fh.safeProp('Metadata')), fh.safeProp('Event'));
     var parseData = R.compose(R.chain(fh.safeParseBuffer), R.chain(fh.safeProp('Data')), fh.safeProp('Event'));
     var outGoingEvent = event => {
+        var data = fh.safeProp('data',event);
+        var metadata = (e,d) =>  R.merge(fh.safeProp('metadata',e), fh.safeProp('continuationId',d))(data,event);
         return {
             EventId : uuid.v4(),
             Type : fh.safeProp('eventName',event).getOrElse(''),
             IsJson : true,
-            Data    : fh.safeCreateBuffer(fh.safeProp('data',event)).getOrElse(),
-            Metadata:  fh.safeCreateBuffer(fh.safeProp('metadata',event)).getOrElse()
+            Data    : fh.safeCreateBuffer(data).getOrElse(),
+            Metadata:  fh.safeCreateBuffer(metadata).getOrElse()
         }
     };
 
