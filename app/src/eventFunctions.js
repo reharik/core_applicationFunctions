@@ -1,5 +1,5 @@
 
-module.exports = function(R, uuid, functionalHelpers){
+module.exports = function(R, uuid, _fantasy, functionalHelpers){
     var fh = functionalHelpers;
     var parseMetadata = R.compose(R.chain(fh.safeParseBuffer), R.chain(fh.safeProp('Metadata')), fh.safeProp('Event'));
     var parseData = R.compose(R.chain(fh.safeParseBuffer), R.chain(fh.safeProp('Data')), fh.safeProp('Event'));
