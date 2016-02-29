@@ -5,7 +5,8 @@ module.exports = function(R, uuid, functionalHelpers){
     var parseData = R.compose(R.chain(fh.safeParseBuffer), R.chain(fh.safeProp('Data')), fh.safeProp('Event'));
     var outGoingEvent = event => {
         var data = fh.safeProp('data',event);
-        var metadata = (e,d) =>  R.merge(fh.safeProp('metadata',e), fh.safeProp('continuationId',d))(data,event);
+        var _metadata = (e,d) =>  _fantasy.Maybe(R.merge(fh.safeProp('metadata',e), fh.safeProp('continuationId',d)));
+        var metadata = _metadata(data,event);
         return {
             EventId : uuid.v4(),
             Type : fh.safeProp('eventName',event).getOrElse(''),
